@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- PixiJS must be imported before @pixi/sound -->
+    <script src="https://unpkg.com/pixi.js/dist/browser/pixi.min.js"></script>
+
+    <!-- found here, if not using CDN "./node_modules/@pixi/sound/dist/pixi-sound.js" -->
+    <script src="https://unpkg.com/@pixi/sound/dist/pixi-sound.js"></script>
+    </head>
+<body>
+    <script>
+      
+        PIXI.sound.disableAutoPause = true;
+
+        sound.add(
+            "my-sound",
+            "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/3uyihH3Uvxc0IC2wPLpWRUoTUpVPaW7zsDXrAbBo.mp3"
+        );
+
+        PIXI.sound.play("my-sound", { loop: true });
+
+        document.addEventListener("visibilitychange", () => {
+            console.log("visibilitychange", { hidden: document.hidden });
+
+            if (document.hidden) {
+                PIXI.sound.unmuteAll();
+            } else {
+                PIXI.sound.muteAll();
+            }
+        });
+    </script>
+</body>
+</html>
